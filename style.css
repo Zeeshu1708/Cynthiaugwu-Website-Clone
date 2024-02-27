@@ -14,11 +14,12 @@ body {
 #cursor {
     position: absolute;
     z-index: 9999;
-    width: 13px;
-    height: 13px;
+    width: 15px;
+    height: 15px;
     background-color: #fff;
     border-radius: 50%;
     transition: all cubic-bezier(0.19, 1, 0.22, 1) .8s;
+    mix-blend-mode: difference;
 }
 
 .bounding{
