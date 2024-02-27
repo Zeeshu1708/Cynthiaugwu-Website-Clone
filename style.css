@@ -11,11 +11,30 @@ body {
     height: 100%;
 }
 
-#main {
-    width: 100%;
+#cursor {
+    position: absolute;
+    z-index: 9999;
+    width: 13px;
+    height: 13px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
 }
 
-#hero {
+.bounding{
+    width: fit-content;
+    overflow: hidden;
+}
+.bounding .boundingElem {
+    transform: translateY(100%);
+}
+
+#main {
+    width: 100%;
+    background-color: black;
+}
+
+#hero{
     position: relative;
     width: 100%;
     height: 100vh;
@@ -57,19 +76,24 @@ body {
 
 #heroHeading .btmHeading {
     width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 #heroHeading .btmHeading h5 {
     margin-top: 5px;
-    text-align: right;
+    /* text-align: right; */
     text-transform: uppercase;
     font-size: 18px;
 }
 
 #heroSecondHeading {
     width: 100%;
-    text-align: right;
-    margin-top: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 85px;
     padding-right: 50px;
 }
 
