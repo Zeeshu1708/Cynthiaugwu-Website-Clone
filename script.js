@@ -50,6 +50,13 @@ function firstPageAnimation() {
         duration: 2,
         stagger: .2
     })
+    .to(".boundingElemDown",{
+        y: '0',
+        ease : Expo.easeInOut,
+        delay : -1,
+        duration: 1,
+        stagger: .3
+    })
     .from("#heroFooter",{
         y: '-10',
         opacity: 0,
@@ -59,6 +66,50 @@ function firstPageAnimation() {
     })
 }
 
+function secondPageAnimation(){
+    document.querySelectorAll(".elem").forEach(function(elem) {
+        var rotation = 0;
+        var diffRotation = 0;
+    
+        elem.addEventListener("mouseenter",function(dets){
+            gsap.to(elem.querySelector("h2"),{
+                opacity: .3,
+                x : "8%",
+                ease: Power3,
+            });
+        });
+        elem.addEventListener("mouseleave",function(dets){
+            gsap.to(elem.querySelector("h2"),{
+                opacity: .65,
+                x : "0",
+                ease: Power3,
+            });
+        });
+        elem.addEventListener("mousemove",function(dets){
+            var diff = (dets.clientY - elem.getBoundingClientRect().top);
+            diffRotation = dets.clientX - rotation;
+            rotation = dets.clientX;
+            
+            gsap.to(elem.querySelector("img"),{
+                opacity: 1,
+                ease: Power3,
+                top: diff,
+                left: dets.clientX,
+                rotate : gsap.utils.clamp(-20,20,diffRotation * 0.5)
+            });
+        });
+        elem.addEventListener("mouseleave",function(dets){
+            gsap.to(elem.querySelector("img"),{
+                opacity: 0,
+                duration: .5
+            });
+        });
+    });
+}
+
+
+
+secondPageAnimation();
 circleShapeChange();
 circleMouseFollower();
 firstPageAnimation();

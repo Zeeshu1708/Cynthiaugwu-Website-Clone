@@ -28,6 +28,9 @@ body {
 .bounding .boundingElem {
     transform: translateY(100%);
 }
+.bounding .boundingElemDown {
+    transform: translateY(-135%);
+}
 
 #main {
     width: 100%;
@@ -153,12 +156,6 @@ body {
     padding: 3vw 0;
     border-top: 1px solid #AAAAAA;
 }
-.elem img{
-    display: none;
-    z-index: 999;
-    position: absolute;
-    height: 140%;
-}
 
 #second .elem h2{
     font-size: 7vw;
@@ -169,6 +166,16 @@ body {
 #elemLast{
     border-bottom: 1px solid #AAAAAA;
 }
+
+.elem img{
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 999;
+    height: 140%;
+    transform: translate(-50%, -50%);
+}
+
 
 #third{
     width: 100%;
