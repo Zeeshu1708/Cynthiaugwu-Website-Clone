@@ -3,10 +3,34 @@ const scroll = new LocomotiveScroll({
     smooth: true
 });
 
-function circleMouseFollower() {
+var timer;
+
+function circleShapeChange() {
+    clearTimeout(timer);
+    var xScale = 1;
+    var yScale = 1;
+
+    var xPrev = 0;
+    var yPrev = 0;
+    window.addEventListener("mousemove", function(dets){
+        xScale = gsap.utils.clamp(0.7, 1.3, dets.clientX - xPrev);
+        yScale = gsap.utils.clamp(0.7, 1.3, dets.clientY - yPrev);
+
+        xPrev = dets.clientX;
+        yPrev = dets.clientY;
+
+        circleMouseFollower(xScale, yScale);
+
+        setTimeout(() => {
+           timer = document.querySelector("#cursor").style.transform = `translate(${dets.clientX}px, ${dets.clientY}px) scale(1,1)`;
+        }, 100);
+    });
+};
+
+function circleMouseFollower(xScale,yScale) {
     window.addEventListener("mousemove", function (dets) {
         // console.log(dets.clientX, dets.clientY);
-        document.querySelector("#cursor").style.transform = `translate(${dets.clientX}px, ${dets.clientY}px)`;
+        document.querySelector("#cursor").style.transform = `translate(${dets.clientX}px, ${dets.clientY}px) scale(${xScale},${yScale})`;
     });
 };
 
@@ -35,7 +59,7 @@ function firstPageAnimation() {
     })
 }
 
-
+circleShapeChange();
 circleMouseFollower();
 firstPageAnimation();
 
